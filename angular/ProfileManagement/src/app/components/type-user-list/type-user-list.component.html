@@ -1,0 +1,42 @@
+<div class="container-fluid text-center" *ngIf="TypeUser.length==0" id="notFound">
+    <div class="alert alert-danger">
+      <h2>{{notFound}}</h2>
+      <input type="button" class="btn btn-default" value="Add Type User" [routerLink]="['/typeuser-form']">
+    </div>
+  </div>
+  
+  <div class="container-fluid text-center" *ngIf="TypeUser.length>0" id="headingList">
+    <div class="row">  
+      <div class="col-12" id="listTitle">
+        <h2 class="text-center">Type User List</h2>
+      </div>
+    </div>
+    <div class="row alert alert-danger" *ngIf="errormessage">
+      <h5 class="text-danger">{{errormessage}}</h5>
+    </div>
+    <input type="button" class="btn btn-default" value="Add Type User" [routerLink]="['/typeuser-form']">
+  
+  </div>
+  <div class="container table-responsive text-center" *ngIf="TypeUser.length>0">
+    <table class="table align-middle table-hover table-striped table-bordered" >
+      <thead>
+        <tr>
+          <th class="col-4" scope="col" (click)="changeSort('id')">ID<span class="btn-label"><i class="fa fa-sort"></i></span></th>
+          <th class="col-4" scope="col" (click)="changeSort('type')">Type<span class="btn-label"><i class="fa fa-sort"></i></span></th>
+          <th class="col-4" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let typeuser of TypeUser | sortBy:optionSort.property:optionSort.order ">
+          <td>{{typeuser.id}}</td>
+          <td>{{typeuser.type}}</td>
+          <td>
+              <input id="edit" type="button" class="btn btn-default m-2" value="Edit" [routerLink]="['/typeuser-form/',typeuser.id]">
+              <input id="delete" type="button" class="btn btn-default" value="Delete" (click)="deleteType(typeuser.id)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  

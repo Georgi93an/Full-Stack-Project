@@ -1,0 +1,51 @@
+<div class="container-fluid text-center" *ngIf="users.length==0" id="notFound">
+    <div class="alert alert-danger">
+      <h2>{{notFound}}</h2>
+      <input type="button" class="btn btn-default" value="Add User" [routerLink]="['/usersform']">
+    </div>
+  </div>
+  
+  <div class="container-fluid text-center" id="headingList" *ngIf="users.length>0">
+    <div class="row">
+      <div class="col-md-12" id="listTitle">  
+            <h2 class="card-title text-center">Users List</h2>
+      </div> 
+    </div>   
+      <input type="button" value="Add User" class="btn btn-default" [routerLink]="['/usersform']">
+  </div>    
+  
+  <div class="container table-responsive text-center" *ngIf="users.length>0">
+      <table class="table  align-middle table-hover table-striped table-bordered">
+          <thead>
+            <tr>
+              <th class="col-2" scope="col" (click)="changeSort('name')">Name<span class="btn-label"><i class="fa fa-sort"></i></span></th>
+              <th class="col-2" scope="col" (click)="changeSort('firstName')" >First Name<span class="btn-label"><i class="fa fa-sort"></i></span></th>
+              <th class="col-2" scope="col" (click)="changeSort('email')">Email<span class="btn-label"><i class="fa fa-sort"></i></span></th>
+              <th class="col-2" scope="col" (click)="changeSort('typeUser')">Type<span class="btn-label"><i class="fa fa-sort"></i></span></th>
+              <th class="col-2" scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users | sortBy:optionSort.property:optionSort.order">
+              <td>{{user.name}}</td>
+              <td>{{user.firstName}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.typeUser.type}}</td>
+              <td>
+                  <input id="edit" type="button" class="btn btn-default m-1" value="Edit" [routerLink]="['/usersform/',user.id]">
+                  <input id="delete" type="button" class="btn btn-default m-1" value="Delete"  (click)="deleteUser(user.id)">   
+                  <input id="details" type="button" class="btn btn-default m-1" value="Profile" [routerLink]="['/user/',user.id]">  
+                </td>
+            </tr>
+          </tbody>
+      </table>
+  </div>    
+
+
+  
+         
+          
+          
+          
+          
+          

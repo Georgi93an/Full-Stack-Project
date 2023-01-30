@@ -1,0 +1,143 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --color1:#890e54ff;
+    --color2:#708090ff;
+    --color3:#80a9beff;
+    --color4:whitesmoke;
+    }
+    
+    body
+    {
+      background-color: lightgrey !important;
+    
+    }
+    
+    .active{
+        border-bottom: 5px solid var(--color1);
+    }
+    
+    input[type="button"],input[type="submit"]{
+        background: var(--color1);
+        color: var(--color4);
+    }
+    
+    input[type="button"]:hover,input[type="submit"]:hover{
+        background: var(--color1);
+        border: 1px solid var(--color2);
+        color: var(--color4);
+    }
+    
+    input[type="text"],input[type="email"]{
+        border-color: var(--color1);
+        border: 2px solid var(--color1);
+        text-align: center;
+    }
+    
+    .form-select{
+        border-color: var(--color1)!important;
+        border: 2px solid var(--color1)!important;
+        text-align: center!important;
+    }
+
+    .form-select option{
+        font-size: 15px;
+       
+    }
+    
+    .form-control:focus,.form-select:focus{
+        color: var(--bs-body-color);
+        background-color: var(--bs-form-control-bg);
+        border-color: var(--color1)!important;
+        outline: 0;
+        box-shadow: 0 0 0 0.1rem var(--color1)!important;
+    }
+    
+    .btn-label {
+        padding: 4px;
+    }
+    
+    table thead{
+        background: var(--color1);
+        color: var(--color4);
+    }
+    
+    table th{
+        cursor: pointer;  
+    }
+    
+    table td{
+        color: black;
+        font-weight: bold;
+        background-color: var(--color4)!important;
+        border-color: lightgray;
+    }
+    
+    #edit{
+        background: var(--color3);
+        color: black;
+        font-weight: bolder;
+    }
+    
+    #delete{
+        background: darkred;
+        color: var(--color4);
+        font-weight: bolder;
+    }
+    
+    .navbar a{
+        font-weight: bolder;
+    }
+    
+    #listTitle{
+        width: 100%;
+        background-color: var(--color2);
+        margin-bottom: 20px;
+        color: var(--color4);
+        padding:10px;
+    }
+    
+    #headingList input{
+        margin-bottom: 20px;
+    }
+    
+    #notFound{
+        padding: 10px;
+    }
+    
+    #notFound input{
+        margin-top: 10px;
+    }
+    
+    #details{
+        font-weight: bolder;
+    }
+    
+    #error{
+        padding: 10px;
+    }
+    
+    #formContainer{
+        width: 50%;
+    }
+    
+    .card{
+        background-color: var(--color2)!important;
+        color: var(--color4);
+        font-weight: bolder;
+    }
+    
+    .form-group{
+        margin-top: 20px !important;
+    }
+
+    @media only screen and (max-width: 700px) and (min-width: 150px)  {
+        #formContainer{
+            width: 100%;
+        }
+    }
+
+    @media only screen and (max-width: 900px) and (min-width: 700px)  {
+        #formContainer{
+            width: 75%;
+        }
+    }

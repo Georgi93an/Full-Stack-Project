@@ -1,0 +1,113 @@
+<div class="container-fuild text-center" *ngIf="typeUser.length<=0" id="notFound">
+    <div class="alert alert-danger">
+      <h2>{{notFound}}</h2>
+      <input type="button" class="btn btn-default" value="Add Type of User" (click)="goToTypeUser()">
+    </div>
+  </div>
+  
+  <div class="container text-center" *ngIf="typeUser.length>0" id="formContainer">
+  <div class="card my-5" >  
+    <div class="card-header">
+      <h4>User Form</h4>
+    </div>
+    <div class="card-body"> 
+      <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+  
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="users.name" required
+              #name="ngModel" minlength="6" maxlength="20" pattern="^[a-zA-Z\s]+$">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+              <div *ngIf="name.errors?.['required']">
+                Name is required.
+              </div>
+              <div *ngIf="name.errors?.['minlength']">
+                Name must be at least 6 characters long.
+              </div>
+              <div *ngIf="name.errors?.['pattern']">
+                Name must contain only letters.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="users.firstName" #firstName="ngModel" 
+              required  minlength="6" maxlength="30" pattern="^[a-zA-Z\s]+$">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger col-12" >
+              <div *ngIf="firstName.errors?.['required']">
+                First Name is required.
+              </div>
+              <div *ngIf="firstName.errors?.['minlength']">
+                First Name must be at least 6 characters long.
+              </div>
+              <div *ngIf="firstName.errors?.['pattern']">
+                First Name must contain only letters.
+              </div>
+            </div>
+          </div> 
+        </div>
+        
+        <div class="row">  
+          <div class="form-group col-12">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" [(ngModel)]="users.email"
+              #email="ngModel" required minlength="6" maxlength="30" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$">
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-12">        
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger col-12" >
+                <div *ngIf="email.errors?.['required']">
+                  Email is required.
+                </div>
+                <div *ngIf="email.errors?.['minlength']">
+                  Email must be at least 6 characters long.
+                </div>
+                <div *ngIf="email.errors?.['pattern']">
+                  Email must have this format :  youremail@domain.suffix
+                </div>
+              </div>           
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div *ngIf="errormessage" class="alert alert-danger">
+              {{errormessage}}
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="typeUser" class="form-label">Type of User</label>
+            <select [compareWith]="viewType" [(ngModel)]="users.typeUser" name="typeUser" class="form-select" #type="ngModel" required>
+              <option *ngFor="let typeuser of typeUser" [ngValue]="typeuser">{{typeuser.type}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group text-center">
+            <input [disabled]="!userForm.valid" type="submit" value="Create" class="btn btn-default" *ngIf="!users.id">
+            <input type="submit" value="Update" class="btn btn-default" *ngIf="users.id">
+          </div>
+        </div>    
+      </form> 
+    </div>  
+  </div>
+  </div>
+  

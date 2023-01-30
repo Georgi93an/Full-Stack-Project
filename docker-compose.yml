@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.13
+    restart: always
+    ports:
+    - 80:80
+    - 443:443
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: profile_management
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3307:3307"
+    restart: always  
+  angular:
+    container_name: angular
+    build: ./angular/ProfileManagement
+    restart: always
+    ports:
+      - 4200:4200
+  springboot:
+    container_name: springboot
+    build:
+     context: ./springboot
+     dockerfile: Dockerfile
+    working_dir: /springboot/ProfileManagement
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./springboot:/springboot
+      - ~/.m2:/root/.m2
+    depends_on:
+      - nginx
+      - mysql 
+    command: mvn clean spring-boot:run   
