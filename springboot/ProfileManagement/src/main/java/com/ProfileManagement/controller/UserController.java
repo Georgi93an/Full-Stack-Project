@@ -11,7 +11,7 @@ import com.ProfileManagement.repository.UserRepository;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 	
 	@Autowired

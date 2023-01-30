@@ -9,7 +9,7 @@ import com.ProfileManagement.repository.TypeRepository;
 
 @RestController
 @RequestMapping("/typeuser")
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 public class TypeController {
 
 	@Autowired
